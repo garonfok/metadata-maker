@@ -323,7 +323,7 @@ function checkExists(attr) {
 /*
  * Once specific processing for a format has been done, create, and then download the resulting record
  *	text: One long string that will be written to the file
- *	filetype: What kind of file is being written (MARC,MARCXML,MODS,HTML)
+ *	filetype: What kind of file is being written (BIBFRAME,MARC,MARCXML,MODS,HTML)
  */
 function downloadFile(text,filetype) {
 	var download_file = document.createElement('a');
@@ -351,6 +351,10 @@ function downloadFile(text,filetype) {
 	}
 	else if (filetype === 'mods') {
 		filename += '_MODS';
+		filetype = 'xml';
+	}
+	else if (filetype === 'bibframe') {
+		filename += '_BIBFRAME';
 		filetype = 'xml';
 	}
 

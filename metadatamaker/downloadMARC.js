@@ -141,7 +141,7 @@ function createSubfield(code,content) {
 }
 
 /*
- * Crate MARC field, containing all the appropriate subfields
+ * Create MARC field, containing all the appropriate subfields
  */
 function createContent(ind,subfields) {
 	var content = String.fromCharCode(30) + ind;

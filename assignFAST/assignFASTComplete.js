@@ -20,7 +20,7 @@ function autoSubject(request, response, responseStyle) {
     requestterm = requestterm.replace(/ /g, "%20");
 
     var suggestIndex = currentSuggestIndex;
-    var suggestReturn = suggestIndex + "%2Cidroot%2Cauth%2Ctag%2Ctype%2Craw%2Cbreaker%2Cindicator";
+    var suggestReturn = suggestIndex + "%2Cidroot%2Cauth%2Ctag%2Ctype%2Craw%2Cbreaker%2Cindicator"; //%2C means ','
 
     var query = "&query=" + requestterm + "&queryIndex=" + suggestIndex + "&queryReturn=" + suggestReturn;
     query += "&suggest=" + subjectDB;
