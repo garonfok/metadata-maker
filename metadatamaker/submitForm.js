@@ -166,10 +166,6 @@ $("#marc-maker").submit(function(event) {
 
 	var institution_info = generateInstitutionInfo();
 
-	if ($("#BIBFRAME").is(':checked')) {
-		downloadBIBFRAME(recordObject,institution_info);
-	}
-
 	if ($("#MARC").is(':checked')) {
 		downloadMARC(recordObject,institution_info);
 	}
@@ -184,6 +180,10 @@ $("#marc-maker").submit(function(event) {
 
 	if ($("#HTML").is(':checked')) {
 		downloadHTML(recordObject,institution_info);
+	}
+	
+	if ($("#BIBFRAME").is(':checked')) {
+		downloadBIBFRAME(recordObject,institution_info);
 	}
 
 	event.preventDefault();

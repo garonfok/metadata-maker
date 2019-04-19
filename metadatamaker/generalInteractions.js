@@ -263,7 +263,7 @@ $(":reset").click(function() {
 
 /*
  * The checkboxes that remove the required element from their associated field are all part of the class called listed, and
- *	all have an id with the form [associated input id]_listed. Once cliked, the associated field is no longer required, and
+ *	all have an id with the form [associated input id]_listed. Once clicked, the associated field is no longer required, and
  *	is disabled until the box is unclicked. Both family name and given name will be disabled and not required if the name 
  *	checkbox is clicked, but will remain active if one of the fields is already filled in. If a box is unchecked, the field is
  *	reverted to normal.
@@ -323,7 +323,7 @@ function checkExists(attr) {
 /*
  * Once specific processing for a format has been done, create, and then download the resulting record
  *	text: One long string that will be written to the file
- *	filetype: What kind of file is being written (BIBFRAME,MARC,MARCXML,MODS,HTML)
+ *	filetype: What kind of file is being written (MARC,MARCXML,MODS,HTML)
  */
 function downloadFile(text,filetype) {
 	var download_file = document.createElement('a');
@@ -355,7 +355,7 @@ function downloadFile(text,filetype) {
 	}
 	else if (filetype === 'bibframe') {
 		filename += '_BIBFRAME';
-		filetype = 'xml';
+		filetype = 'xml'
 	}
 
 	download_file.setAttribute('download', filename + '.' + filetype);
