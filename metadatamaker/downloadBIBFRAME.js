@@ -52,6 +52,21 @@
  * institution_info: object containing name of institution creating record
  */
  function downloadBIBFRAME(record,institution_info) {
+	var literatureTypes = {
+		'0': 'Not fiction (not further specified)',
+		'1': 'Fiction (not further specified)',
+		'd': 'Dramas',
+		'e': 'Essays',
+		'f': 'Novels',
+		'h': 'Humor, satires, etc.',
+		'i': 'Letters',
+		'j': 'Short stories',
+		'm': 'Mixed forms',
+		'p': 'Poetry',
+		's': 'Speeches',
+		'u': 'Unknown',
+		'|': 'No attempt to code'
+	}
 
  	var fastTypes = {
  		'00': 'name type="personal"',
@@ -83,7 +98,7 @@
 
  	var genreText = '';
  	if (checkExists(record.literature_yes) && checkExists(record.literature_dropdown)) {
- 		genreText += '        <bf:genreForm>\n            <rdfs:label>' + record.literature_dropdown + '<rdfs:label/>\n        </bf:genreForm>\n';
+ 		genreText += '        <bf:genreForm>\n            <rdfs:label>' + literatureTypes[record.literature_dropdown] + '<rdfs:label/>\n        </bf:genreForm>\n';
  	}
  	
 	var authorText = '';
