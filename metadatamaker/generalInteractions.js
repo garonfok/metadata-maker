@@ -369,6 +369,10 @@ function downloadFile(text,filetype) {
 		filename += '_ONIX';
 		filetype = 'xml';
 	}
+	else if (filetype === 'bibframe') {
+		filename += '_BIBFRAME';
+		filetype = 'xml';
+	}
 
 	download_file.setAttribute('download', filename + '.' + filetype);
 	var clickReplacement = new MouseEvent('click', {

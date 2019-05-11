@@ -51,7 +51,7 @@
  * record: 			 object containing the user-input data
  * institution_info: object containing name of institution creating record
  */
- function downloadBIBFRAME(record,institution_info) {
+function downloadBIBFRAME(record,institution_info) {
 	var literatureTypes = {
 		'0': 'Not fiction (not further specified)',
 		'1': 'Fiction (not further specified)',
@@ -174,30 +174,30 @@
 	workText += subjectFASTText;
 
 	var subjectBISACText = '';
-	if (checkExists(record.subject_list)){
-		for (var c = 0; c < record.subject_list.length; c++) {
+	if (checkExists(record.subjects)){
+		for (var c = 0; c < record.subjects.length; c++) {
 			subjectBISACText +=
 				'        <bf:subject>\n' +
 				'            <bf:Topic>\n' +
 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#ComplexSubject"/>\n' +
 				'                <madsrdf:componentList rdf:parseType="Collection">\n' +
 				'                    <madsrdf:Topic>\n' +
-				'                        <madsrdf:authoritativeLabel>' + record.subject_list[c]['level1'] + '</madsrdf:authoritativeLabel>\n' +
+				'                        <madsrdf:authoritativeLabel>' + record.subjects[c]['level1'] + '</madsrdf:authoritativeLabel>\n' +
 				'                    </madsrdf:Topic>\n';
-			if (checkExists(record.subject_list[c]['level2'])) {
+			if ('level2' in record.subjects[c]) {
 				subjectBISACText +=
 					'                    <madsrdf:Topic>\n' +
-					'                        <madsrdf:authoritativeLabel>' + record.subject_list[c]['level2'] + '</madsrdf:authoritativeLabel>\n' + 
+					'                        <madsrdf:authoritativeLabel>' + record.subjects[c]['level2'] + '</madsrdf:authoritativeLabel>\n' + 
 					'                    </madsrdf:Topic>\n';
 			}
-			if (checkExists(record.subject_list[c]['level3'])) {
+			if ('level3' in record.subjects[c]) {
 				subjectBISACText +=
 					'                    <madsrdf:Topic>\n' +
-					'                        <madsrdf:authoritativeLabel>' + record.subject_list[c]['level3'] + '</madsrdf:authoritativeLabel>\n' + 
+					'                        <madsrdf:authoritativeLabel>' + record.subjects[c]['level3'] + '</madsrdf:authoritativeLabel>\n' + 
 					'                    </madsrdf:Topic>\n';
 			}
 			subjectBISACText +=
-				'                <bf:identifiedBy>\n' + record.subject_list[c]['id_number'] + '</bf:identifiedBy>\n' +
+				'                <bf:identifiedBy>\n' + record.subjects[c]['id_number'] + '</bf:identifiedBy>\n' +
 				'                <bf:source>bisacsh</bf:source>\n' +
 				'            </bf:Topic>\n' +
 				'        </bf:subject>\n';
