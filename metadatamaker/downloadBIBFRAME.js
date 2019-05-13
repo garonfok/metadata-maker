@@ -6,13 +6,22 @@
  	if (checkExists(given) || checkExists(family)) {
  		
 
- 		var contributionText = '        <bf:contribution>\n            <bf:Contribution>\n';
+ 		var contributionText =
+ 			'        <bf:contribution>\n' +
+ 			'            <bf:Contribution>\n';
 
  		if (authorCount == 0){
  			contributionText += '                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>\n'
  		}
 
- 		contributionText += '                <bf:role>\n                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n                </bf:role>\n                <bf:agent>\n                    <bf:Agent>\n                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n						<rdfs:label>';
+ 		contributionText +=
+ 			'                <bf:role>\n' +
+ 			'                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n' +
+ 			'                </bf:role>\n' +
+ 			'                <bf:agent>\n' +
+ 			'                    <bf:Agent>\n' +
+ 			'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
+ 			'						<rdfs:label>';
 
 
  		if (checkExists(family)) {
@@ -27,7 +36,12 @@
  			contributionText += escapeXML(given);
  		}
 
- 		contributionText += '</rdfs:label>\n                    </bf:Agent>\n                </bf:agent>\n            </bf:Contribution>\n        </bf:contribution>\n';
+ 		contributionText +=
+ 			'</rdfs:label>\n' +
+ 			'                    </bf:Agent>\n' +
+ 			'                </bf:agent>\n' +
+ 			'            </bf:Contribution>\n' +
+ 			'        </bf:contribution>\n';
 
  		return contributionText;
  	}
