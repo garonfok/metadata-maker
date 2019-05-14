@@ -50,7 +50,7 @@ function fillAuthorBIBFRAME(family,given,role,authorCount) {
 	}
 }
 function fillCorporateAuthorBIBFRAME(family,given,role,authorCount) {
-	var role_index = { 'art': 'artist', 'aut': 'author', 'ctb': 'contributor', 'edt': 'editor', 'ill': 'illustrator', 'trl': 'translator'};
+	var role_index = { 'cre': 'creator', 'ctb': 'contributor',};
 	if (checkExists(given) || checkExists(family)) {
 		
 
@@ -92,55 +92,7 @@ function fillCorporateAuthorBIBFRAME(family,given,role,authorCount) {
 	else {
 		return '';
 	}
-}/*
-function fillCorporateAuthorBIBFRAME(family,given,role,authorCount) {
-	var role_index = { 'art': 'artist', 'aut': 'author', 'ctb': 'contributor', 'edt': 'editor', 'ill': 'illustrator', 'trl': 'translator'};
-	if (checkExists(given) || checkExists(family)) {
-
-
-		var contributionText =
-		'        <bf:contribution>\n' +
-		'            <bf:Contribution>\n';
-
-		if (authorCount == 0){
-			contributionText += '                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>\n'
-		}
-
-		contributionText +=
-		'                <bf:agent>\n' +
-		'                    <bf:Agent>\n' +
-		'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Jurisdiction"/>\n' +
-		'						<rdfs:label>';
-
-
-		if (checkExists(family)) {
-			contributionText += escapeXML(family);
-		}
-
-		if (checkExists(given) && checkExists(family)) {
-			contributionText += ', ';
-		}
-
-		if (checkExists(given)) {
-			contributionText += escapeXML(given);
-		}
-
-		contributionText +=
-		'</rdfs:label>\n' +
-		'                    </bf:Agent>\n' +
-		'                </bf:agent>\n' +
-		'                <bf:role>\n' +
-		'                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n' +
-		'                </bf:role>\n' +
-		'            </bf:Contribution>\n' +
-		'        </bf:contribution>\n';
-
-		return contributionText;
-	}
-	else {
-		return '';
-	}
-}*/
+}
 
 function sliceFastURI(fastURI){
 	var charCheck = fastURI.charAt(0);
@@ -243,7 +195,7 @@ function sliceFastURI(fastURI){
  	workText += authorText;
  	if (checkExists(record.additional_corporate_authors)) {
  		for (var i = 0; i < record.additional_corporate_authors.length; i++) {
- 			authorText += fillCorporateAuthorBIBFRAME(record.additional_corporate_authors[i][0]['family'],record.additional_corporate_authors[i][0]['given'],record.additional_corporate_authors[i][0]['role'],i);
+ 			authorText += fillCorporateAuthorBIBFRAME(record.additional_corporate_authors[i][0]['corporate'],record.additional_corporate_authors[i][0]['role'],i);
  		}
  	}
  	workText += authorText;
