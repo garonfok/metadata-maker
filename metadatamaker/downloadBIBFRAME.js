@@ -215,17 +215,59 @@ function sliceFastURI(fastURI){
  	var scaleText = '        <bf:scale>' + record.scale + '</bf:scale>\n';
  	workText += scaleText
 
- 	var subjectText = '';
+ 	var subjectPersonText = '';
+ 	var subjectCorporateText = '';
+ 	var subjectConferenceText = '';
  	var subjectTopicText = '';
  	var subjectGeographicText = '';
- 	var subjectPersonText = '';
+ 	var genreFormText = '';
  	if (checkExists(record.fast)) {
  		for (var c = 0; c < record.fast.length; c++) {
- 			if (record.fast[c][1] == '50'){
+ 			if (record.fast[c][1] == '00'){
+	 			subjectPersonText +=
+	 			'        <bf:subject>\n' +
+	 			'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 			'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
+	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
+	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 			'                <bf:source>\n' +
+	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 			'                </bf:source>\n' +
+	 			'            </bf:Agent>\n' +
+	 			'        </bf:subject>\n';
+ 			}
+ 			else if (record.fast[c][1] == '10'){
+	 			subjectCorporateText +=
+	 			'        <bf:subject>\n' +
+	 			'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 			'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Corporate"/>\n' +
+	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
+	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 			'                <bf:source>\n' +
+	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 			'                </bf:source>\n' +
+	 			'            </bf:Agent>\n' +
+	 			'        </bf:subject>\n';
+ 			}
+ 			else if (record.fast[c][1] == '11'){
+	 			subjectConferenceText +=
+	 			'        <bf:subject>\n' +
+	 			'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 			'               <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Conference"/>\n' +
+	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
+	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 			'                <bf:source>\n' +
+	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 			'                </bf:source>\n' +
+	 			'            </bf:Agent>\n' +
+	 			'        </bf:subject>\n';
+ 			}
+ 			else if (record.fast[c][1] == '50'){
 	 			subjectTopicText +=
 	 			'        <bf:subject>\n' +
 	 			'            <bf:Topic rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
 	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>\n' +
+	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
 	 			'                <bf:source>\n' +
 	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
 	 			'                </bf:source>\n' +
@@ -235,28 +277,31 @@ function sliceFastURI(fastURI){
  			else if (record.fast[c][1] == '51'){
 	 			subjectGeographicText +=
 	 			'        <bf:subject>\n' +
-	 			'            <bf:Topic rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>\n' +
+	 			'            <bf:Place rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Geographic"/>\n' +
+	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
 	 			'                <bf:source>\n' +
 	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
 	 			'                </bf:source>\n' +
-	 			'            </bf:Topic>\n' +
+	 			'            </bf:Place>\n' +
 	 			'        </bf:subject>\n';
  			}
- 			else {
-	 			subjectPersonText +=
+ 			else if (record.fast[c][1] == '55'){
+	 			genreFormText +=
 	 			'        <bf:subject>\n' +
-	 			'            <bf:Topic rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>\n' +
+	 			'            <bf:GenreForm rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 			'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/GenreForm"/>\n' +
+	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#GenreForm"/>\n' +
+	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
 	 			'                <bf:source>\n' +
 	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
 	 			'                </bf:source>\n' +
-	 			'            </bf:Topic>\n' +
+	 			'            </bf:GenreForm\n' +
 	 			'        </bf:subject>\n';
  			}
  		}
  	}
- 	workText += subjectText + subjectGeographicText + subjectPersonText;
+ 	workText += subjectPersonText + subjectCorporateText + subjectConferenceText + subjectTopicText + subjectGeographicText + genreFormText;
 
  	workText +=
  	'        <bf:hasInstance rdf:resource="http://example.org/d0e1#Instance"/>\n' +
