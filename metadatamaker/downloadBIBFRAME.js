@@ -1,63 +1,63 @@
 /*
- * Author output depends on how the name was entered
- */
- function fillAuthorBIBFRAME(family,given,role,authorCount) {
- 	var role_index = { 'art': 'artist', 'aut': 'author', 'ctb': 'contributor', 'edt': 'editor', 'ill': 'illustrator', 'trl': 'translator'};
- 	if (checkExists(given) || checkExists(family)) {
- 		
-
- 		var contributionText =
- 		'        <bf:contribution>\n' +
- 		'            <bf:Contribution>\n';
-
- 		if (authorCount == 0){
- 			contributionText += '                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>\n'
- 		}
-
- 		contributionText +=
- 		'                <bf:role>\n' +
- 		'                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n' +
- 		'                </bf:role>\n' +
- 		'                <bf:agent>\n' +
- 		'                    <bf:Agent>\n' +
- 		'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
- 		'						<rdfs:label>';
+* Author output depends on how the name was entered
+*/
+function fillAuthorBIBFRAME(family,given,role,authorCount) {
+	var role_index = { 'art': 'artist', 'aut': 'author', 'ctb': 'contributor', 'edt': 'editor', 'ill': 'illustrator', 'trl': 'translator'};
+	if (checkExists(given) || checkExists(family)) {
 
 
- 		if (checkExists(family)) {
- 			contributionText += escapeXML(family);
- 		}
+		var contributionText =
+		'        <bf:contribution>\n' +
+		'            <bf:Contribution>\n';
 
- 		if (checkExists(given) && checkExists(family)) {
- 			contributionText += ', ';
- 		}
+		if (authorCount == 0){
+			contributionText += '                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>\n'
+		}
 
- 		if (checkExists(given)) {
- 			contributionText += escapeXML(given);
- 		}
+		contributionText +=
+		'                <bf:role>\n' +
+		'                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n' +
+		'                </bf:role>\n' +
+		'                <bf:agent>\n' +
+		'                    <bf:Agent>\n' +
+		'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
+		'						<rdfs:label>';
 
- 		contributionText +=
- 		'</rdfs:label>\n' +
- 		'                    </bf:Agent>\n' +
- 		'                </bf:agent>\n' +
- 		'            </bf:Contribution>\n' +
- 		'        </bf:contribution>\n';
 
- 		return contributionText;
- 	}
- 	else {
- 		return '';
- 	}
- }
+		if (checkExists(family)) {
+			contributionText += escapeXML(family);
+		}
 
- function sliceFastURI(fastURI){
- 	var charCheck = fastURI.charAt(0);
- 	if (charCheck == '1' || charCheck == '2' || charCheck == '3' || charCheck == '4' || charCheck == '5' || charCheck == '6' || charCheck == '7' || charCheck == '8' || charCheck == '9'){
- 		return fastURI;
- 	}
+		if (checkExists(given) && checkExists(family)) {
+			contributionText += ', ';
+		}
 
- 	return sliceFastURI(fastURI.slice(1,fastURI.length));
- }
+		if (checkExists(given)) {
+			contributionText += escapeXML(given);
+		}
+
+		contributionText +=
+		'</rdfs:label>\n' +
+		'                    </bf:Agent>\n' +
+		'                </bf:agent>\n' +
+		'            </bf:Contribution>\n' +
+		'        </bf:contribution>\n';
+
+		return contributionText;
+	}
+	else {
+		return '';
+	}
+}
+
+function sliceFastURI(fastURI){
+	var charCheck = fastURI.charAt(0);
+	if (charCheck == '1' || charCheck == '2' || charCheck == '3' || charCheck == '4' || charCheck == '5' || charCheck == '6' || charCheck == '7' || charCheck == '8' || charCheck == '9'){
+		return fastURI;
+	}
+
+	return sliceFastURI(fastURI.slice(1,fastURI.length));
+}
 
 /*
  * Build a BIBFRAME record. Each DOM object is saved as a string, then all the strings are combined into one master text
@@ -127,16 +127,14 @@
  		ss: date.getSeconds()
  	};
  	var timeStampString = timeStamp.yyyy + '-' + timeStamp.mm + '-' + timeStamp.dd + 'T' + timeStamp.hh + ':' + timeStamp.minutes + ':' + timeStamp.ss;
- 	adminText +=
- 	timeStampString + '</rdfs:label>\n' +
+ 	adminText += timeStampString + '</rdfs:label>\n' +
  	'            </bf:GenerationProcess>\n' +
  	'        </bf:generationProcess>\n' +
  	'    </bf:AdminMetadata>\n';
 
- 	var workText = '    <bf:Work rdf:about="http://example.org/d0e1#Work">\n';
-
- 	var rdfTypeText = '        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>\n';
- 	workText += rdfTypeText;
+ 	var workText =
+ 		'    <bf:Work rdf:about="http://example.org/d0e1#Work">\n' +
+ 		'        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>\n';
 
  	var genreText = 
  	'        <bf:genreForm>\n' +
@@ -213,7 +211,7 @@
  		}
  		subjectBISACText +=
  		'                </madsrdf:componentList>\n' +
- 		'                <bf:identifiedBy>\n' + record.subjects[c]['id_number'] + '</bf:identifiedBy>\n' +
+ 		'                <bf:identifiedBy>' + record.subjects[c]['id_number'] + '</bf:identifiedBy>\n' +
  		'                <bf:source>bisacsh</bf:source>\n' +
  		'            </bf:Topic>\n' +
  		'        </bf:subject>\n';
@@ -276,8 +274,8 @@
  	}
  	instanceText += '            </bf:Title>\n        </bf:title>\n';
 
- 	var provisionText ='';
- 	if (checkExists(record.publication_country) || checkExists(record.publication_place) || checkExists(record.publisher) || checkExists(record.publication_year) || checkExists(record.copyright_year) || checkExists(record.edition)) {
+ 	var provisionText = '';
+ 	if (checkExists(record.publication_country) || checkExists(record.publication_place) || checkExists(record.publisher) || checkExists(record.publication_year)) {
  		provisionText += '        <bf:provisionActivity>\n            <bf:ProvisionActivity>\n                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>\n';
 
  		if (checkExists(record.publication_place)) {
@@ -298,7 +296,6 @@
 
  		provisionText += '            </bf:ProvisionActivity>\n';
  	}
-
  	instanceText += provisionText +
  	'        <bf:media>\n' +
  	'            <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/c"/>\n' +
@@ -314,7 +311,7 @@
  	'        <bf:instanceOf rdf:resource="http://example.org/d0e1#Work"/>\n' +
  	'    </bf:Instance>\n';
 
- 	var itemText += 
+ 	var itemText = 
  	'    <bf:Item rdf:about="http://example.org/d0e1#Item856-22">\n' +
  	'        <bf:electronicLocator>\n' +
  	'            <rdfs:Resource>\n' +
