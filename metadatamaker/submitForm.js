@@ -185,6 +185,10 @@ $("#marc-maker").submit(function(event) {
 
 	var institution_info = generateInstitutionInfo();
 
+	if ($("#BIBFRAME").is(':checked')) {
+		downloadBIBFRAME(recordObject,institution_info);
+	}
+
 	if ($("#MARC").is(':checked')) {
 		downloadMARC(recordObject,institution_info);
 	}

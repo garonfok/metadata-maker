@@ -7,21 +7,21 @@ function fillAuthorBIBFRAME(family,given,role,authorCount) {
 
 
 		var contributionText =
-		'        <bf:contribution>\n' +
-		'            <bf:Contribution>\n';
+			'        <bf:contribution>\n' +
+			'            <bf:Contribution>\n';
 
 		if (authorCount == 0){
-			contributionText += '                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>\n'
+			contributionText += '                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bflc/PrimaryContribution"/>\n';
 		}
 
 		contributionText +=
-		'                <bf:role>\n' +
-		'                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n' +
-		'                </bf:role>\n' +
-		'                <bf:agent>\n' +
-		'                    <bf:Agent>\n' +
-		'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
-		'						<rdfs:label>';
+			'                <bf:role>\n' +
+			'                    <bf:Role rdf:about="http://id.loc.gov/vocabulary/relators/' + role + '"/>\n' +
+			'                </bf:role>\n' +
+			'                <bf:agent>\n' +
+			'                    <bf:Agent>\n' +
+			'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
+			'						<rdfs:label>';
 
 
 		if (checkExists(family)) {
@@ -37,11 +37,11 @@ function fillAuthorBIBFRAME(family,given,role,authorCount) {
 		}
 
 		contributionText +=
-		'</rdfs:label>\n' +
-		'                    </bf:Agent>\n' +
-		'                </bf:agent>\n' +
-		'            </bf:Contribution>\n' +
-		'        </bf:contribution>\n';
+			'</rdfs:label>\n' +
+			'                    </bf:Agent>\n' +
+			'                </bf:agent>\n' +
+			'            </bf:Contribution>\n' +
+			'        </bf:contribution>\n';
 
 		return contributionText;
 	}
@@ -55,14 +55,12 @@ function fillCorporateAuthorBIBFRAME(family,given,role,authorCount) {
 		
 
 		var contributionText =
-		'        <bf:contribution>\n' +
-		'            <bf:Contribution>\n' +
-
-		contributionText +=
-		'                <bf:agent>\n' +
-		'                    <bf:Agent>\n' +
-		'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>\n' +
-		'						<rdfs:label>';
+			'        <bf:contribution>\n' +
+			'            <bf:Contribution>\n' +
+			'                <bf:agent>\n' +
+			'                    <bf:Agent>\n' +
+			'                        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Organization"/>\n' +
+			'						<rdfs:label>';
 
 
 		if (checkExists(family)) {
@@ -104,12 +102,12 @@ function sliceFastURI(fastURI){
 }
 
 /*
- * Build a BIBFRAME record. Each DOM object is saved as a string, then all the strings are combined into one master text
- *
- * record: 			 object containing the user-input data
- * institution_info: object containing name of institution creating record
- */
- function downloadBIBFRAME(record,institution_info) {
+* Build a BIBFRAME record. Each DOM object is saved as a string, then all the strings are combined into one master text
+*
+* record: 			 object containing the user-input data
+* institution_info: object containing name of institution creating record
+*/
+function downloadBIBFRAME(record,institution_info) {
  	var literatureTypes = {
  		'0': 'Not fiction (not further specified)',
  		'1': 'Fiction (not further specified)',
@@ -137,30 +135,30 @@ function sliceFastURI(fastURI){
  	}
 
  	var startText =
- 	'<?xml version="1.0" encoding="UTF-8"?>\n' +
- 	'<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"\n' +
- 	'    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"\n' +
- 	'    xmlns:bf="http://id.loc.gov/ontologies/bibframe/"\n' +
- 	'    xmlns:bflc="http://id.loc.gov/ontologies/bflc/"\n' +
- 	'    xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">\n';
+ 		'<?xml version="1.0" encoding="UTF-8"?>\n' +
+ 		'<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"\n' +
+ 		'    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"\n' +
+ 		'    xmlns:bf="http://id.loc.gov/ontologies/bibframe/"\n' +
+ 		'    xmlns:bflc="http://id.loc.gov/ontologies/bflc/"\n' +
+ 		'    xmlns:madsrdf="http://www.loc.gov/mads/rdf/v1#">\n';
 
  	var adminText =
- 	'    <bf:AdminMetadata>\n' +
- 	'        <bflc:encodingLevel>\n' +
- 	'            <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7"/>\n' +
- 	'        </bflc:encodingLevel>\n' +
- 	'        <bf:assigner>\n' +
- 	'            <bf:Agent rdf:about="' + escapeXML(institution_info['html']['url']) + '"/>' +
- 	'        </bf:assigner>\n' +
- 	'        <bf:descriptionLanguage>\n' +
- 	'            <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>\n' +
- 	'        </bf:descriptionLanguage>\n' +
- 	'        <bf:descriptionConventions>\n' +
- 	'            <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/rda"/>\n' +
- 	'        </bf:descriptionConventions>\n' +
- 	'        <bf:generationProcess>\n' +
- 	'            <bf:GenerationProcess>\n' +
- 	'                <rdfs:label>Metadata Maker v1.1, BIBFRAME 2.0 RDFXML; ';
+ 		'    <bf:AdminMetadata>\n' +
+ 		'        <bflc:encodingLevel>\n' +
+ 		'            <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7"/>\n' +
+ 		'        </bflc:encodingLevel>\n' +
+ 		'        <bf:assigner>\n' +
+ 		'            <bf:Agent rdf:about="' + escapeXML(institution_info['html']['url']) + '"/>' +
+ 		'        </bf:assigner>\n' +
+ 		'        <bf:descriptionLanguage>\n' +
+ 		'            <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>\n' +
+ 		'        </bf:descriptionLanguage>\n' +
+ 		'        <bf:descriptionConventions>\n' +
+ 		'            <bf:DescriptionConventions rdf:about="http://id.loc.gov/vocabulary/descriptionConventions/rda"/>\n' +
+ 		'        </bf:descriptionConventions>\n' +
+ 		'        <bf:generationProcess>\n' +
+ 		'            <bf:GenerationProcess>\n' +
+ 		'                <rdfs:label>Metadata Maker v1.1, BIBFRAME 2.0 RDFXML; ';
 
  	var today = new Date();
  	var date = {
@@ -172,16 +170,20 @@ function sliceFastURI(fastURI){
  		ss: today.getSeconds()
  	};
 
- 	adminText += date.yyyy + '-' + date.mm + '-' + date.dd + 'T' + date.hh + ':' + date.minutes + ':' + date.ss + '</rdfs:label>\n            </bf:GenerationProcess>\n        </bf:generationProcess>\n    </bf:AdminMetadata>\n';
+ 	adminText +=
+ 		date.yyyy + '-' + date.mm + '-' + date.dd + 'T' + date.hh + ':' + date.minutes + ':' + date.ss + '</rdfs:label>\n' +
+	 	'            </bf:GenerationProcess>\n' +
+	 	'        </bf:generationProcess>\n' +
+	 	'    </bf:AdminMetadata>\n';
 
  	var workText = '    <bf:Work rdf:about="http://example.org/d0e1#Work">\n';
 
  	var genreText = '';
  	if (checkExists(record.literature_yes) && checkExists(record.literature_dropdown)) {
  		genreText +=
- 		'        <bf:genreForm>\n' +
- 		'            <bf:GenreForm rdf:about="http://id.loc.gov/vocabulary/marcgt/map"/>\n' +
- 		'        </bf:genreForm>\n';
+ 			'        <bf:genreForm>\n' +
+ 			'            <bf:GenreForm rdf:about="http://id.loc.gov/vocabulary/marcgt/map"/>\n' +
+ 			'        </bf:genreForm>\n';
  	}
  	workText += genreText;
  	
@@ -201,15 +203,15 @@ function sliceFastURI(fastURI){
  	workText += authorText;
 
  	var titleText =
- 	'        <bf:title>\n' +
- 	'            <bf:Title>\n' +
- 	'                <bf:mainTitle>' + escapeXML(record.title[0]['title']) + '</bf:mainTitle>\n';
+ 		'        <bf:title>\n' +
+ 		'            <bf:Title>\n' +
+ 		'                <bf:mainTitle>' + escapeXML(record.title[0]['title']) + '</bf:mainTitle>\n';
  	if (checkExists(record.title[0]['subtitle'])) {
  		titleText += '                <bf:subtitle>' + escapeXML(record.title[0]['subtitle']) + '</bf:subtitle>\n';
  	}
  	titleText +=
- 	'            </bf:Title>\n' +
- 	'        </bf:title>\n';
+ 		'            </bf:Title>\n' +
+ 		'        </bf:title>\n';
  	workText += titleText;
 
  	var scaleText = '        <bf:scale>' + record.scale + '</bf:scale>\n';
@@ -225,110 +227,110 @@ function sliceFastURI(fastURI){
  		for (var c = 0; c < record.fast.length; c++) {
  			if (record.fast[c][1] == '00'){
 	 			subjectPersonText +=
-	 			'        <bf:subject>\n' +
-	 			'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
-	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
-	 			'                <bf:source>\n' +
-	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
-	 			'                </bf:source>\n' +
-	 			'            </bf:Agent>\n' +
-	 			'        </bf:subject>\n';
+	 				'        <bf:subject>\n' +
+	 				'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 				'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Person"/>\n' +
+	 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
+	 				'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 				'                <bf:source>\n' +
+	 				'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 				'                </bf:source>\n' +
+	 				'            </bf:Agent>\n' +
+	 				'        </bf:subject>\n';
  			}
  			else if (record.fast[c][1] == '10'){
 	 			subjectCorporateText +=
-	 			'        <bf:subject>\n' +
-	 			'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Corporate"/>\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
-	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
-	 			'                <bf:source>\n' +
-	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
-	 			'                </bf:source>\n' +
-	 			'            </bf:Agent>\n' +
-	 			'        </bf:subject>\n';
+	 				'        <bf:subject>\n' +
+	 				'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 				'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Corporate"/>\n' +
+	 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
+	 				'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 				'                <bf:source>\n' +
+	 				'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 				'                </bf:source>\n' +
+	 				'            </bf:Agent>\n' +
+	 				'        </bf:subject>\n';
  			}
  			else if (record.fast[c][1] == '11'){
 	 			subjectConferenceText +=
-	 			'        <bf:subject>\n' +
-	 			'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'               <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Conference"/>\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
-	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
-	 			'                <bf:source>\n' +
-	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
-	 			'                </bf:source>\n' +
-	 			'            </bf:Agent>\n' +
-	 			'        </bf:subject>\n';
+	 				'        <bf:subject>\n' +
+	 				'            <bf:Agent rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 				'               <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Conference"/>\n' +
+	 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Name"/>\n' +
+	 				'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 				'                <bf:source>\n' +
+	 				'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 				'                </bf:source>\n' +
+	 				'            </bf:Agent>\n' +
+	 				'        </bf:subject>\n';
  			}
  			else if (record.fast[c][1] == '50'){
 	 			subjectTopicText +=
-	 			'        <bf:subject>\n' +
-	 			'            <bf:Topic rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>\n' +
-	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
-	 			'                <bf:source>\n' +
-	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
-	 			'                </bf:source>\n' +
-	 			'            </bf:Topic>\n' +
-	 			'        </bf:subject>\n';
+	 				'        <bf:subject>\n' +
+	 				'            <bf:Topic rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Topic"/>\n' +
+	 				'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 				'                <bf:source>\n' +
+	 				'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 				'                </bf:source>\n' +
+	 				'            </bf:Topic>\n' +
+	 				'        </bf:subject>\n';
  			}
  			else if (record.fast[c][1] == '51'){
 	 			subjectGeographicText +=
-	 			'        <bf:subject>\n' +
-	 			'            <bf:Place rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Geographic"/>\n' +
-	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
-	 			'                <bf:source>\n' +
-	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
-	 			'                </bf:source>\n' +
-	 			'            </bf:Place>\n' +
-	 			'        </bf:subject>\n';
+	 				'        <bf:subject>\n' +
+	 				'            <bf:Place rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#Geographic"/>\n' +
+	 				'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 				'                <bf:source>\n' +
+	 				'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 				'                </bf:source>\n' +
+	 				'            </bf:Place>\n' +
+	 				'        </bf:subject>\n';
  			}
  			else if (record.fast[c][1] == '55'){
 	 			genreFormText +=
-	 			'        <bf:subject>\n' +
-	 			'            <bf:GenreForm rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
-	 			'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/GenreForm"/>\n' +
-	 			'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#GenreForm"/>\n' +
-	 			'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
-	 			'                <bf:source>\n' +
-	 			'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
-	 			'                </bf:source>\n' +
-	 			'            </bf:GenreForm\n' +
-	 			'        </bf:subject>\n';
+	 				'        <bf:subject>\n' +
+	 				'            <bf:GenreForm rdf:about="http://id.worldcat.org/fast/' + sliceFastURI(escapeXML(record.fast[c][1])) + '">\n' +
+	 				'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/GenreForm"/>\n' +
+	 				'                <rdf:type rdf:resource="http://www.loc.gov/mads/rdf/v1#GenreForm"/>\n' +
+	 				'                <rdfs:label>' + escapeXML(record.fast[c][0]) + '</rdfs:label>\n' +
+	 				'                <bf:source>\n' +
+	 				'                    <bf:Source rdf:about="http://id.loc.gov/vocabulary/identifiers/fast"/>\n' +
+	 				'                </bf:source>\n' +
+	 				'            </bf:GenreForm\n' +
+	 				'        </bf:subject>\n';
  			}
  		}
  	}
  	workText += subjectPersonText + subjectCorporateText + subjectConferenceText + subjectTopicText + subjectGeographicText + genreFormText;
 
  	workText +=
- 	'        <bf:hasInstance rdf:resource="http://example.org/d0e1#Instance"/>\n' +
- 	'    </bf:Work>\n';
+	 	'        <bf:hasInstance rdf:resource="http://example.org/d0e1#Instance"/>\n' +
+	 	'    </bf:Work>\n';
 
 
  	var instanceText =
- 	'    <bf:Instance rdf:about="http://example.org/d0e1#Instance">\n' +
- 	'        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>\n';
+	 	'    <bf:Instance rdf:about="http://example.org/d0e1#Instance">\n' +
+	 	'        <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Text"/>\n';
 
  	var languageText =
- 	'        <bf:language>\n' +
- 	'            <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/' + record.language + '"/>\n' +
- 	'        </bf:language>\n';
+	 	'        <bf:language>\n' +
+	 	'            <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/' + record.language + '"/>\n' +
+	 	'        </bf:language>\n';
  	instanceText += languageText;
 
  	instanceText +=
- 	'        <bf:issuance>\n' +
- 	'            <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>\n' +
- 	'        </bf:issuance>\n';
+	 	'        <bf:issuance>\n' +
+	 	'            <bf:Issuance rdf:about="http://id.loc.gov/vocabulary/issuance/mono"/>\n' +
+	 	'        </bf:issuance>\n';
 
  	var provisionText ='';
  	if (checkExists(record.publication_country) || checkExists(record.publication_place) || checkExists(record.publisher) || checkExists(record.publication_year) || checkExists(record.copyright_year) || checkExists(record.edition)) {
  		provisionText +=
- 		'        <bf:provisionActivity>\n' +
- 		'            <bf:ProvisionActivity>\n' +
- 		'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>\n';
+	 		'        <bf:provisionActivity>\n' +
+	 		'            <bf:ProvisionActivity>\n' +
+	 		'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>\n';
 
  		if (checkExists(record.publication_year)) {
  			provisionText += '                <bf:date>' + record.publication_year + '</bf:date>\n';
@@ -336,27 +338,27 @@ function sliceFastURI(fastURI){
 
  		if (checkExists(record.publication_country)) {
  			provisionText +=
- 			'                <bf:place>\n' +
- 			'                    <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/' + record.publication_country + '"/>\n' +
- 			'                </bf:place>\n';
+	 			'                <bf:place>\n' +
+	 			'                    <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/' + record.publication_country + '"/>\n' +
+	 			'                </bf:place>\n';
  		}
 
  		if (checkExists(record.publication_place)) {
  			provisionText +=
- 			'                <bf:place>\n' +
- 			'                    <bf:Place>\n' +
- 			'            			<rdfs:label>' + escapeXML(record.publication_place) + '</rdfs:label>\n' +
- 			'                    </bf:Place>\n' +
- 			'                </bf:place>\n';
+	 			'                <bf:place>\n' +
+	 			'                    <bf:Place>\n' +
+	 			'            			<rdfs:label>' + escapeXML(record.publication_place) + '</rdfs:label>\n' +
+	 			'                    </bf:Place>\n' +
+	 			'                </bf:place>\n';
  		}
 
  		if (checkExists(record.publisher)) {
  			provisionText +=
- 			'                <bf:agent>\n' +
- 			'                    <bf:Agent>\n' +
- 			'                        <rdfs:label>' + escapeXML(record.publisher) + '</rdfs:label>\n' +
- 			'                    </bf:Agent>\n' +
- 			'                </bf:agent>\n';
+	 			'                <bf:agent>\n' +
+	 			'                    <bf:Agent>\n' +
+	 			'                        <rdfs:label>' + escapeXML(record.publisher) + '</rdfs:label>\n' +
+	 			'                    </bf:Agent>\n' +
+	 			'                </bf:agent>\n';
  		}
 
  		provisionText += '            </bf:ProvisionActivity>\n';
@@ -365,29 +367,28 @@ function sliceFastURI(fastURI){
  	instanceText += provisionText;
 
  	if (checkExists(record.copyright_year)) {
- 		instanceText +=
- 		'        <bf:copyrightDate rdf:datatype="http://id.loc.gov/datatypes/edtf">' + record.copyright_year + '</bf:copyrightDate>\n';
+ 		instanceText += '        <bf:copyrightDate rdf:datatype="http://id.loc.gov/datatypes/edtf">' + record.copyright_year + '</bf:copyrightDate>\n';
  	}
 
  	if (checkExists(record.isbn)) {
  		instanceText +=
- 		'        <bf:identifiedBy>\n' +
- 		'            <bf:Isbn rdf:about="http://id.loc.gov/vocabulary/identifiers/isbn">\n' +
- 		'                <rdf:value>' + record.isbn + '</rdf:value>\n' +
- 		'            </bf:Isbn>\n' +
- 		'        </bf:identifiedBy>\n';
+	 		'        <bf:identifiedBy>\n' +
+	 		'            <bf:Isbn rdf:about="http://id.loc.gov/vocabulary/identifiers/isbn">\n' +
+	 		'                <rdf:value>' + record.isbn + '</rdf:value>\n' +
+	 		'            </bf:Isbn>\n' +
+	 		'        </bf:identifiedBy>\n';
  	}
 
  	instanceText +=
- 	'        <bf:title>\n' +
- 	'            <bf:Title>\n' +
- 	'                <bf:mainTitle>' + escapeXML(record.title[0]['title']) + '</bf:mainTitle>\n';
+	 	'        <bf:title>\n' +
+	 	'            <bf:Title>\n' +
+	 	'                <bf:mainTitle>' + escapeXML(record.title[0]['title']) + '</bf:mainTitle>\n';
  	if (checkExists(record.title[0]['subtitle'])) {
  		instanceText += '                <bf:subTitle>' + escapeXML(record.title[0]['subtitle']) + '</bf:subTitle>\n';
  	}
  	instanceText +=
- 	'            </bf:Title>\n' +
- 	'        </bf:title>\n';
+	 	'            </bf:Title>\n' +
+	 	'        </bf:title>\n';
 
  	if (checkExists(record.edition)) {
  		instanceText += '        <bf:editionStatement>' + escapeXML(record.edition) + '</bf:editionStatement>\n';
@@ -402,17 +403,18 @@ function sliceFastURI(fastURI){
  	instanceText += '        <bf:dimensions>' + record.dimensions + ' cm</bf:dimensions>\n'
 
  	instanceText +=
- 	'        <bf:media>\n' +
- 	'            <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n"/>\n' +
- 	'        </bf:media>\n' +
- 	'        <bf:content>\n' +
- 	'            <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/cri"/>\n' +
- 	'        </bf:content>\n' +
- 	'        <bf:carrier>\n' +
- 	'            <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nb"/>\n' +
- 	'        </bf:carrier>\n' +
- 	'        <bf:instanceOf rdf:resource="http://example.org/d0e1#Work"/>\n' +
- 	'    </bf:Instance>\n';
+	 	'        <bf:media>\n' +
+	 	'            <bf:Media rdf:about="http://id.loc.gov/vocabulary/mediaTypes/n"/>\n' +
+	 	'        </bf:media>\n' +
+	 	'        <bf:content>\n' +
+	 	'            <bf:Content rdf:about="http://id.loc.gov/vocabulary/contentTypes/cri"/>\n' +
+	 	'        </bf:content>\n' +
+	 	'        <bf:carrier>\n' +
+	 	'            <bf:Carrier rdf:about="http://id.loc.gov/vocabulary/carriers/nb"/>\n' +
+	 	'        </bf:carrier>\n' +
+	 	'        <bf:note>' + record.notes + '</bf:note>\n' +
+	 	'        <bf:instanceOf rdf:resource="http://example.org/d0e1#Work"/>\n' +
+	 	'    </bf:Instance>\n';
 
  	var endText = '</rdf:RDF>';
 
