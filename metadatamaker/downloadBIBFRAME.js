@@ -5,32 +5,6 @@
  * institution_info: object containing name of institution creating record
  */
  function downloadBIBFRAME(record,institution_info) {
-	var literatureTypes = {
-		'0': 'Not fiction (not further specified)',
-		'1': 'Fiction (not further specified)',
-		'd': 'Dramas',
-		'e': 'Essays',
-		'f': 'Novels',
-		'h': 'Humor, satires, etc.',
-		'i': 'Letters',
-		'j': 'Short stories',
-		'm': 'Mixed forms',
-		'p': 'Poetry',
-		's': 'Speeches',
-		'u': 'Unknown',
-		'|': 'No attempt to code'
-	}
-
- 	var fastTypes = {
- 		'00': 'name type="personal"',
- 		'10': 'name type="corporate"',
- 		'11': 'name type="conference"',
- 		'30': 'titleInfo',
- 		'50': 'topic',
- 		'51': 'geographic',
- 		'55': 'genre'
- 	}
-
  	var startText =
  		'<?xml version="1.0" encoding="UTF-8"?>\n' +
  		'<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"\n' +
@@ -67,7 +41,11 @@
  		ss: today.getSeconds()
  	};
 
- 	adminText += date.yyyy + '-' + date.mm + '-' + date.dd + 'T' + date.hh + ':' + date.minutes + ':' + date.ss + '</rdfs:label>\n            </bf:GenerationProcess>\n        </bf:generationProcess>\n    </bf:AdminMetadata>\n';
+ 	adminText +=
+ 		date.yyyy + '-' + date.mm + '-' + date.dd + 'T' + date.hh + ':' + date.minutes + ':' + date.ss + '</rdfs:label>\n' +
+ 		'            </bf:GenerationProcess>\n' +
+ 		'        </bf:generationProcess>\n' +
+ 		'    </bf:AdminMetadata>\n';
 
  	var workText = '    <bf:Work rdf:about="http://example.org/d0e1#Work">\n';
 
@@ -103,7 +81,7 @@
 		'                <bf:date>' + record.publication_year + '</bf:date>\n' +
 		'            </bf:Dissertation>\n' +
 		'        </bf:dissertation>\n';
-	workText += dissertationTextl;
+	workText += dissertationText;
 
 	var subjectText =
 		'        <bf:subject>\n' +
