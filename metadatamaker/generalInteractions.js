@@ -336,7 +336,7 @@ function downloadFile(text,filetype) {
 		filename += '_BIBFRAME';
 		filetype = 'xml';
 	}
-å
+
 	download_file.setAttribute('download', filename + '.' + filetype);
 	var clickReplacement = new MouseEvent('click', {
 		'view': window,

@@ -148,7 +148,7 @@ function downloadBIBFRAME(record,institution_info) {
  		'            <bflc:EncodingLevel rdf:about="http://id.loc.gov/vocabulary/menclvl/7"/>\n' +
  		'        </bflc:encodingLevel>\n' +
  		'        <bf:assigner>\n' +
- 		'            <bf:Agent rdf:about="' + escapeXML(institution_info['html']['url']) + '"/>' +
+ 		'            <bf:Agent rdf:about="' + escapeXML(institution_info['html']['url']) + '"/>\n' +
  		'        </bf:assigner>\n' +
  		'        <bf:descriptionLanguage>\n' +
  		'            <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/eng"/>\n' +
