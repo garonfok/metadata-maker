@@ -52,7 +52,7 @@
  	var titleText =
  		'        <bf:title>\n' +
  		'            <bf:Title>\n' +
- 		'                <bf:mainTitle>' + escapeXML(record.title[0]['title']) + '</bf:mainTitle>\n' +
+ 		'                <bf:mainTitle>' + escapeXML(record.title) + '</bf:mainTitle>\n' +
  		'            </bf:Title>\n' +
  		'        </bf:title>\n';
  	workText += titleText;
@@ -95,7 +95,6 @@
 	workText +=
 		'        <bf:hasInstance rdf:resource="http://example.org/d0e1#Instance"/>\n' +
 		'    </bf:Work>\n';
-
 
 	var instanceText =
 		'    <bf:Instance rdf:about="http://example.org/d0e1#Instance">\n' +
