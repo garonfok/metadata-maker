@@ -109,12 +109,13 @@
 		'        <bf:language>\n' +
 		'            <bf:Language rdf:about="http://id.loc.gov/vocabulary/languages/' + record.language + '"/>\n' +
 		'        </bf:language>\n';
+	instanceText += languageText;
 
 	var provisionText =
 		'        <bf:provisionActivity>\n' +
 		'            <bf:ProvisionActivity>\n' +
 		'                <rdf:type rdf:resource="http://id.loc.gov/ontologies/bibframe/Publication"/>\n' +
-		'                <bf:daterdf:datatype="http://id.loc.gov/datatypes/edtf">' + record.publication_year + '</bf:date>\n';
+		'                <bf:daterdf:datatype="http://id.loc.gov/datatypes/edtf">' + record.publication_year + '</bf:date>\n' +
 		'                <bf:place>\n' +
 		'                    <bf:Place rdf:about="http://id.loc.gov/vocabulary/countries/ilu"/>\n' +
 		'                </bf:place>\n' +
@@ -130,10 +131,7 @@
 
  	instanceText += titleText;
 
-	var pagesText = '';
-	if (checkExists(record.pages)) {
-		pagesText += '        <bf:extent>' + record.number_of_pages + '</bf:extent>\n';
-	}
+	var pagesText = '        <bf:extent>' + record.number_of_pages + '</bf:extent>\n';
 	instanceText += pagesText;
 
 	instanceText +=
@@ -153,8 +151,8 @@
 		'            <bf:Note>' +
 		'                <rdfs:label>Includes bibliographical references (page ' + record.bibliographies + ').</rdfs:label>\n' +
 		'                <bf:noteType>bibliography</bf:noteType>\n' +
-		'            </bf:Note>\n';
-		'        </bf:note>\n'
+		'            </bf:Note>\n' +
+		'        </bf:note>\n';
 	instanceText += notesText;
 
 	instanceText += 
